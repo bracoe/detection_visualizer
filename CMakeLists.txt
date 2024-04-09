@@ -51,8 +51,6 @@ install(TARGETS detection_visualizer_node
 install(TARGETS detection_visualizer_node_main
   DESTINATION lib/${PROJECT_NAME})
 
-install(DIRECTORY config/ launch/ DESTINATION share/${PROJECT_NAME})
-install(DIRECTORY config/ DESTINATION share/${PROJECT_NAME}/config)
 install(DIRECTORY include/ DESTINATION include)
 
 ament_package()
