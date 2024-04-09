@@ -27,7 +27,7 @@ DetectionVisualizerNode::DetectionVisualizerNode(const rclcpp::NodeOptions & opt
   std::string topic = node_base->resolve_topic_or_service_name("image_raw", false);
   image_transport::TransportHints hints(this, "raw", "image_transport");
   sub_image_.subscribe(this, topic, hints.getTransport());
-  sub_detections_.subscribe(this, "/detector_node/detections");
+  sub_detections_.subscribe(this, "detections");
 
   //Publisher
   node_base = this->get_node_base_interface();
