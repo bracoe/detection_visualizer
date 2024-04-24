@@ -11,7 +11,7 @@ DetectionVisualizerNode::DetectionVisualizerNode(const rclcpp::NodeOptions & opt
 
   // TransportHints does not actually declare the parameter
   this->declare_parameter<std::string>("image_transport", "raw");
-  int queue_size = this->declare_parameter<int>("queue_size", 5);
+  int queue_size = this->declare_parameter<int>("queue_size", 20);
 
   synchronizer_ = std::make_shared<ApproxSynchronizer>(ApproxSyncPolicy(queue_size), sub_image_, sub_detections_);
     synchronizer_->registerCallback(
@@ -69,7 +69,7 @@ void DetectionVisualizerNode::syncCallback(
 
     //Draw rectangle
     auto loop_color = colors.at(color_count++%colors.size());
-    int thickness = 1; 
+    int thickness = 2; 
     cv::rectangle(cv_image, min_point, max_point, 
             loop_color, thickness, cv::LINE_8); 
 
@@ -80,9 +80,11 @@ void DetectionVisualizerNode::syncCallback(
     std::stringstream stream;
     stream << std::fixed << std::setprecision(2) << max_score;
     label.append(stream.str());
+    auto text_size = cv::getTextSize(label, cv::FONT_HERSHEY_SIMPLEX, 0.75, thickness, nullptr);
 
-    auto position = cv::Point2d(min_point.x, max_point.y);
-    cv::putText(cv_image, label, position, cv::FONT_HERSHEY_SIMPLEX, 0.75, loop_color, 1, cv::LINE_AA);
+    auto position = cv::Point2d(min_point.x, min_point.y);
+    cv::rectangle(cv_image, position, cv::Point2d(position.x + text_size.width, position.y - text_size.height), loop_color, -1);
+    cv::putText(cv_image, label, position, cv::FONT_HERSHEY_SIMPLEX, 0.75, cv::Scalar(255, 255, 255), thickness, cv::LINE_AA);
 
   }
   
