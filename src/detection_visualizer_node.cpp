@@ -69,9 +69,9 @@ void DetectionVisualizerNode::syncCallback(
 
     //Draw rectangle
     auto loop_color = colors.at(color_count++%colors.size());
-    int thickness = 2; 
+    int thickness = 1; 
     cv::rectangle(cv_image, min_point, max_point, 
-            loop_color, thickness, cv::LINE_8); 
+            loop_color, thickness*2, cv::LINE_8); 
 
     //Add name and score
     std::string label;
