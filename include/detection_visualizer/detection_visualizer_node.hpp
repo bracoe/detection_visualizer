@@ -33,18 +33,18 @@ private:
 
   //Should be enough to give all detections a unique color in the image
   std::vector<cv::Scalar> colors = {
-    cv::Scalar(255, 0, 0),
-    cv::Scalar(0, 255, 0),
-    cv::Scalar(0, 0, 255),
-    cv::Scalar(0, 255, 255),
-    cv::Scalar(255, 0, 255),
-    cv::Scalar(255, 255, 0),
-    cv::Scalar(128, 0, 0),
-    cv::Scalar(0, 128, 0),
-    cv::Scalar(0, 0, 128),
+    cv::Scalar(255,105,180),
+    cv::Scalar(255,0,0),
+    cv::Scalar(255,165,0),
+    cv::Scalar(255,255,0),
+    cv::Scalar(0,128,0),
+    cv::Scalar(64,224,208),
+    cv::Scalar(75,0,130),
+    cv::Scalar(238,130,238),
+    /*cv::Scalar(0, 0, 128),
     cv::Scalar(0, 128, 128),
     cv::Scalar(128, 0, 128),
-    cv::Scalar(128, 128, 0)
+    cv::Scalar(128, 128, 0)*/
   };
 
   void syncCallback(
