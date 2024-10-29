@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>detection_visualizer</name>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <description>Visualizes detections on an image</description>
 
   <author email="sloretz@openrobotics.org">Shane Loretz</author>
@@ -9,20 +9,16 @@
 
   <license>Apache License 2.0</license>
 
-  <exec_depend>cv_bridge</exec_depend>
-  <exec_depend>message_filters</exec_depend>
-  <exec_depend>python3-opencv</exec_depend>
-  <exec_depend>rclpy</exec_depend>
-  <exec_depend>sensor_msgs</exec_depend>
-  <exec_depend>vision_msgs</exec_depend>
+  <depend>cv_bridge</depend>
+  <depend>message_filters</depend>
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>vision_msgs</depend>
+  <depend>image_transport</depend>
 
-  <test_depend>ament_copyright</test_depend>
-  <test_depend>ament_flake8</test_depend>
-  <test_depend>ament_pep257</test_depend>
-  <test_depend>python3-pytest</test_depend>
 
   <export>
-    <build_type>ament_python</build_type>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
 
