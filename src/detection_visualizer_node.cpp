@@ -89,7 +89,7 @@ void DetectionVisualizerNode::syncCallback(
   }
   
   sensor_msgs::msg::Image::SharedPtr drawn_image_msg = cv_bridge::CvImage(image_msg->header, image_msg->encoding, cv_image).toImageMsg();
-  pub_image_.publish(drawn_image_msg);
+  pub_image_.publish(std::move(drawn_image_msg));
 }
 
 
