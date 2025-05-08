@@ -26,7 +26,7 @@ DetectionVisualizerNode::DetectionVisualizerNode(const rclcpp::NodeOptions & opt
   auto node_base = this->get_node_base_interface();
   std::string topic = node_base->resolve_topic_or_service_name("image_raw", false);
   image_transport::TransportHints hints(this, "raw", "image_transport");
-  sub_image_.subscribe(this, topic, hints.getTransport());
+  sub_image_.subscribe(this, topic, hints.getTransport(), rmw_qos_profile_sensor_data);
   sub_detections_.subscribe(this, "detections");
 
   //Publisher
