@@ -2,8 +2,7 @@
 #define DETECTION_VISUALIZER_NODE_HPP_
 
 #include <rclcpp/rclcpp.hpp>
-#include <image_transport/image_transport.hpp>
-#include <image_transport/subscriber_filter.hpp>
+#include <sensor_msgs/msg/image.hpp>
 #include <message_filters/subscriber.h>
 #include <message_filters/synchronizer.h>
 #include <message_filters/sync_policies/approximate_time.h>
@@ -21,7 +20,7 @@ public:
   explicit DetectionVisualizerNode(const rclcpp::NodeOptions & options);
 
 private:
-  image_transport::SubscriberFilter sub_image_;
+  message_filters::Subscriber<sensor_msgs::msg::Image> sub_image_;
   message_filters::Subscriber<vision_msgs::msg::Detection2DArray> sub_detections_;
   using ApproxSyncPolicy = message_filters::sync_policies::ApproximateTime<
     sensor_msgs::msg::Image, vision_msgs::msg::Detection2DArray>;
@@ -29,7 +28,7 @@ private:
   std::shared_ptr<ApproxSynchronizer> synchronizer_;
 
   std::mutex connect_mutex_;
-  image_transport::Publisher pub_image_;
+  rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr pub_image_;
 
   //Should be enough to give all detections a unique color in the image
   std::vector<cv::Scalar> colors = {
