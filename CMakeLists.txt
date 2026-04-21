@@ -16,7 +16,7 @@ find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(vision_msgs REQUIRED)
-find_package(image_transport REQUIRED)
+find_package(message_filters REQUIRED)
 
 
 add_library(detection_visualizer_node SHARED
@@ -29,7 +29,7 @@ ament_target_dependencies(detection_visualizer_node
   cv_bridge
   sensor_msgs
   vision_msgs
-  image_transport)
+  message_filters)
 
 rclcpp_components_register_nodes(detection_visualizer_node "detection_visualizer::DetectionVisualizerNode")
 
